@@ -2,8 +2,8 @@ package webserver_test
 
 import (
 	"fmt"
-	"net/http"
 	"io/ioutil"
+	"net/http"
 )
 
 func ExampleHttpGet() {
