@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -47,7 +48,8 @@ func handlerSlack(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Println("Server starting...")
 	http.HandleFunc("/", handler)
 	http.HandleFunc("/slack", handlerSlack)
-	http.ListenAndServe(":8080", nil)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
