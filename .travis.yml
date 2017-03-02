@@ -5,3 +5,4 @@ go:
 
 before_install:
   - go get -v github.com/golang/lint/golint
+
