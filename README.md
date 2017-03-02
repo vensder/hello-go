@@ -9,3 +9,22 @@ Open [http://localhost:8080/Hi%20there!](http://localhost:8080/Hi%20there!) or a
 ``docker logs hello-go``
 
 ``docker stop hello-go``
+
+### How to build your own image if you don't have Go (but have a docker):
+
+``git clone https://github.com/vensder/hello-go.git``
+
+``cd hello-go``
+
+``docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp golang:1.8-alpine go build -v webserver.go``
+
+Make binary file smaller:
+``strip webserver``
+`` mkdir -p bin/ && mv webserver bin/
+
+Build docker image:
+``docker build -t hello-go .``
+
+So you got smallest docker image with built-in web-server, it have size less than 8 MB!
+You can use it even in embedded systems.
+
