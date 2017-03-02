@@ -6,4 +6,6 @@ Hello go webserver
 
 Open http://localhost:8080/Hi%20there! or any other random path in your web browser.
 
+``docker logs hello-go``
+
 ``docker stop hello-go``
