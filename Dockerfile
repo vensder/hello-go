@@ -1,8 +1,11 @@
-FROM alpine:3.5
+FROM golang:onbuild
+ADD . /root/
+WORKDIR /root
+RUN CGO_ENABLED=0 GOOS=linux go build -v -x webserver.go && chmod +x webserver
 
-MAINTAINER vensder <vensder@gmail.com>
-
-COPY bin/webserver /usr/local/bin/
+FROM alpine:latest
+WORKDIR /root
+COPY --from=0 /root/webserver .
 EXPOSE 8080
-CMD ["/usr/local/bin/webserver"]
+CMD ["./webserver"]
 
