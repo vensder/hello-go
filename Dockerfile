@@ -4,5 +4,5 @@ MAINTAINER vensder <vensder@gmail.com>
 
 COPY bin/webserver /usr/local/bin/
 EXPOSE 8080
-CMD ["webserver"]
+CMD ["/usr/local/bin/webserver"]
 
