@@ -27,7 +27,7 @@ func ip_addr() string {
 		fmt.Println("Can't get public IP via aws meta data")
 		return "127.0.0.1"
 	}
-	defer resp.Body.Close()
+	defer resp.Body.Close() // Close body only if response non-nil
 	if resp.StatusCode == http.StatusOK {
 		bodyBytes, err2 := ioutil.ReadAll(resp.Body)
 		if err2 != nil {
