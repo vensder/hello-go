@@ -1,7 +1,7 @@
 FROM golang:onbuild
 ADD . /root/
 WORKDIR /root
-RUN CGO_ENABLED=0 GOOS=linux go build -v -x webserver.go && chmod +x webserver
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -x webserver.go && chmod +x webserver
 
 FROM alpine:latest
 WORKDIR /root
