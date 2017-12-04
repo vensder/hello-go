@@ -53,6 +53,13 @@ func main() {
 		"security-groups",
 	}
 
+	content, err := ioutil.ReadFile("date.txt")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(string(content))
+
 	meta_data_items_map := make(map[string]string)
 
 	for _, item := range meta_data_items {
@@ -64,10 +71,12 @@ func main() {
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, ("<p>URL Path: " + r.URL.Path + "</p>"))
+		fmt.Fprintf(w, ("<p>date.txt: " + string(content) + "</p>"))
 		fmt.Fprintf(w, ("<h1>Host: " + hostname + "</h1>"))
 		for _, item := range meta_data_items {
 			fmt.Fprintf(w, ("<h2>" + item + ": " + meta_data_items_map[item] + "</h2>"))
 		}
+
 		fmt.Println(hostname)
 	})
 
