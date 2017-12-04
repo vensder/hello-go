@@ -6,7 +6,7 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -x webserver.go && chmod +
 FROM alpine:latest
 WORKDIR /root
 COPY --from=0 /root/webserver .
-RUN date -u > date.txt
+RUN echo "builded date: $(date -u)" > date.txt
 EXPOSE 8080
 CMD ["./webserver"]
 
