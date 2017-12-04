@@ -68,7 +68,7 @@ func main() {
 			fmt.Println(err)
 		}
 		fmt.Println(string(file_content))
-		
+
 		fmt.Fprintf(w, ("<p>URL Path: " + r.URL.Path + "</p>"))
 		fmt.Fprintf(w, ("<p>date.txt: " + string(file_content) + "</p>"))
 		fmt.Fprintf(w, ("<h1>Host: " + hostname + "</h1>"))
