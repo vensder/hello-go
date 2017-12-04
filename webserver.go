@@ -53,12 +53,6 @@ func main() {
 		"security-groups",
 	}
 
-	content, err := ioutil.ReadFile("date.txt")
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(string(content))
-
 	meta_data_items_map := make(map[string]string)
 	for _, item := range meta_data_items {
 		meta_data_items_map[item] = getMetaData(item)
@@ -68,8 +62,15 @@ func main() {
 	fmt.Println("Hostname: " + hostname)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
+		file_content, err := ioutil.ReadFile("date.txt")
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println(string(file_content))
+		
 		fmt.Fprintf(w, ("<p>URL Path: " + r.URL.Path + "</p>"))
-		fmt.Fprintf(w, ("<p>date.txt: " + string(content) + "</p>"))
+		fmt.Fprintf(w, ("<p>date.txt: " + string(file_content) + "</p>"))
 		fmt.Fprintf(w, ("<h1>Host: " + hostname + "</h1>"))
 		for _, item := range meta_data_items {
 			fmt.Fprintf(w, ("<h2>" + item + ": " + meta_data_items_map[item] + "</h2>"))
