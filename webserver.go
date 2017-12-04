@@ -57,11 +57,9 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
 	fmt.Println(string(content))
 
 	meta_data_items_map := make(map[string]string)
-
 	for _, item := range meta_data_items {
 		meta_data_items_map[item] = getMetaData(item)
 	}
@@ -75,6 +73,11 @@ func main() {
 		fmt.Fprintf(w, ("<h1>Host: " + hostname + "</h1>"))
 		for _, item := range meta_data_items {
 			fmt.Fprintf(w, ("<h2>" + item + ": " + meta_data_items_map[item] + "</h2>"))
+		}
+
+		for _, e := range os.Environ() {
+			fmt.Println(string(e))
+			fmt.Fprintf(w, ("<p>" + string(e) + "</p>"))
 		}
 
 		fmt.Println(hostname)
