@@ -49,6 +49,8 @@ func main() {
 		"local-hostname",
 		"local-ipv4",
 		"public-ipv4",
+		"public-keys",
+		"security-groups"
 	}
 
 	meta_data_items_map := make(map[string]string)
