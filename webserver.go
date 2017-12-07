@@ -60,6 +60,8 @@ func main() {
 	fmt.Println("Server starting...")
 	hostname := hostname()
 	fmt.Println("Hostname: " + hostname)
+	env_color := os.Getenv("color")
+	fmt.Println(env_color)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 
@@ -71,7 +73,7 @@ func main() {
 
 		fmt.Fprintf(w, ("<p>URL Path: " + r.URL.Path + "</p>"))
 		fmt.Fprintf(w, ("<p>date.txt: " + string(file_content) + "</p>"))
-		fmt.Fprintf(w, ("<h1>Host: " + hostname + "</h1>"))
+		fmt.Fprintf(w, ("<h1 style=\"background-color:" + env_color + ";\">Host: " + hostname + "</h1>"))
 		for _, item := range meta_data_items {
 			fmt.Fprintf(w, ("<h2>" + item + ": " + meta_data_items_map[item] + "</h2>"))
 		}
